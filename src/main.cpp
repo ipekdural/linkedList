@@ -2,6 +2,7 @@
 #include <fstream>
 #include <cmath>
 #include "Dugum.hpp"
+#include <limits>
 #include "Basamak.hpp"
 #include "Sayi.hpp"
 #include "SayilarListesi.hpp"
@@ -18,55 +19,74 @@ void menu(){
 
 int main() {
     //dosyadan sayilari cekme
-    const char* dosyaAdi = "Sayilar.txt";
-    ifstream dosya(dosyaAdi);
+    const char* dosya_ismi = "Sayilar.txt";
+    ifstream dosya(dosya_ismi);
     if (!dosya.is_open()) 
     {
-        cerr << "Dosya acilamadi: " << dosyaAdi << endl;
+        cerr << "Dosya acilamadi: " << dosya_ismi << endl;
         return 1; 
     }
 
 
     int number;
-    SayilarListesi* sayilar =new SayilarListesi;
+    SayilarListesi* number_list =new SayilarListesi;
 
     while (dosya >> number)
     {
         int temp = number;
   
-        sayilar->ekle(number);
+        number_list->ekle(number);
        
 
         
 
 
         
-    }         
-    while(true)
+    }   
+    bool devam_mi=true;      
+    while(devam_mi)
     { 
        
-        sayilar->yazdir();
+        number_list->yazdir();
         menu();
-        int choice;
-        cin>>choice;
-        if(choice==1)
-        {
-            sayilar->basamaklariTersCevir();
-            sayilar->tersBasamaklariBasaAl();
-     
-        }
-        else if(choice==2)
-        {
-            sayilar->basamaklariTersCevir();
-   
-        }
-        else if(choice==3)
-        {
-            sayilar->enBuyukRakamiSil();
-        }
-        else if(choice==4)
-        {
-            break;
+        string _choice;
+        cin>>_choice;
+        if(_choice=="1" || _choice=="2" || _choice=="3" || _choice=="4" )
+    {      if(_choice=="1")
+            {
+                number_list->basamaklariTersCevir();
+                number_list->tersBasamaklariBasaAl();
+        
+            }
+            else if(_choice=="2")
+            {
+                number_list->basamaklariTersCevir();
+    
+            }
+            else if(_choice=="3")
+            {
+                number_list->enBuyukRakamiSil();
+            }
+            else if(_choice=="4")
+            {
+                cout<<"Cikis yapiliyor...";
+                devam_mi=false;
+            }}
+        else{
+              cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Tamponu temizle
+            string kullanici_girisi;
+
+            cout << "Gecersiz islem. Devam etmek icin 'y' ye basiniz."<<endl<<"Cikmak icin herhangi bir tusa basiniz.";
+            cin>>kullanici_girisi;
+
+            if (kullanici_girisi == "y" || kullanici_girisi=="n") {
+                devam_mi = true;
+            }
+            else{
+                cout<<"Cikis yapiliyor...";
+                devam_mi=false;
+            }
+
         }
     
 
@@ -74,10 +94,10 @@ int main() {
 
 
  
-    delete sayilar;
+    delete number_list;
 
     dosya.close();
 
 
-    return 0; 
+ 
 }

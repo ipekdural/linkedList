@@ -8,4 +8,5 @@ Basamak::Basamak(int veri)
 }
 Basamak::~Basamak()
 {
+	cout<<this<<"silindi"<<endl;
 }

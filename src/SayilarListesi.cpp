@@ -23,7 +23,7 @@ SayilarListesi::~SayilarListesi()
 	}
 	
 }
-void SayilarListesi::ekle(int veri) {
+void SayilarListesi::ekle(const int veri) {
     Dugum* yeni = new Dugum(veri);
     if (ilk == 0) {
         ilk = yeni;

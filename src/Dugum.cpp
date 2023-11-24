@@ -1,6 +1,9 @@
 #include "Dugum.hpp"
 #include <string>
+#include <vector>
 #include "Sayi.hpp"
+#include <iostream>
+using namespace std;
 
 Dugum::Dugum(int veri) : veri(veri), sonraki(nullptr) {
    
@@ -12,7 +15,7 @@ Dugum::Dugum(int veri) : veri(veri), sonraki(nullptr) {
 }
 
 Dugum::~Dugum() {
- 
+    cout<<this<<"silindi"<<endl;
 }
 
 
@@ -27,6 +30,8 @@ void Dugum::tersCevir() {
     veri = tersVeri;
 }
 
+
+
 void Dugum::tekBasaAl() {
     int temp = veri;
     int tersVeri = 0;
@@ -38,7 +43,7 @@ void Dugum::tekBasaAl() {
         temp /= 10;
     }
 
-    int basamaklar[basamakSayisi];
+    std::vector<int> basamaklar(basamakSayisi);
     int index = 0;
 
     temp = tersVeri;
@@ -65,6 +70,7 @@ void Dugum::tekBasaAl() {
 
     veri = temp;
 }
+
 
 void Dugum::tersCevirBasamaklar() {
     sayi.tekBasamaklariBasaAl(); 

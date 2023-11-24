@@ -16,11 +16,12 @@ Sayi::~Sayi()
 		Basamak* sil =temp;
 		temp=temp->sonraki;
 		delete sil;
+        
 
 	}
 	
 }
-void Sayi::ekle(int veri)
+void Sayi::ekle(const int veri)
 {
 	 Basamak* yeni = new Basamak(veri);
     yeni->sonraki = first; // yrni basamagin sonraki referansını ilk dugume bagladin
